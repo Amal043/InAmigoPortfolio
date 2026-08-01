@@ -1,6 +1,5 @@
 import React from 'react';
-import { personalInfo } from '../data/portfolioData';
-import avatarImg from '../AmalFolder/Amal-avatar.png';
+import avatarImg from '../assets/Amal-avatar.png';
 
 const Hero = () => {
   return (
