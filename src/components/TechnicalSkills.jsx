@@ -1,68 +1,82 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { technicalSkills } from '../data/portfolioData';
 
-const SkillProgress = ({ name, level }) => (
-  <div className="mb-4">
-    <div className="flex justify-between items-center mb-1">
-      <span className="text-white text-sm font-semibold tracking-wide">{name}</span>
-      <span className="text-red-400 text-xs font-bold font-mono">{level}%</span>
-    </div>
-    <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden border border-white/5">
-      <div 
-        className="h-full bg-gradient-to-r from-red-600 to-red-400 rounded-full transition-all duration-1000 ease-out"
-        style={{ width: `${level}%` }}
-      />
-    </div>
-  </div>
-);
-
-const SkillCard = ({ category, index }) => (
-  <div 
-    data-aos="fade-up"
-    data-aos-delay={index * 100}
-    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 hover:scale-[1.02] hover:border-red-500/30 hover:shadow-[0_20px_50px_rgba(255,42,42,0.1)] transition-all duration-500"
-  >
-    <h3 className="text-white text-lg font-black tracking-tight mb-6 pb-2 border-b border-white/10 uppercase">
-      {category.title}
-    </h3>
-    <div>
-      {category.skills.map((skill) => (
-        <SkillProgress key={skill.name} name={skill.name} level={skill.level} />
-      ))}
-    </div>
-  </div>
-);
-
 const TechnicalSkills = () => {
+  const [activeCategory, setActiveCategory] = useState('All');
+
+  const categories = ['All', ...technicalSkills.categories.map((cat) => cat.title)];
+
+  const filteredCategories =
+    activeCategory === 'All'
+      ? technicalSkills.categories
+      : technicalSkills.categories.filter((cat) => cat.title === activeCategory);
+
   return (
-    <section id="skills" className="bg-[#0a0a0a] pt-24 pb-28 px-6 md:px-12 w-full relative overflow-hidden font-sans">
-      {/* Background visual elements */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-red-500/10 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        
-        {/* Header */}
-        <div data-aos="fade-up" className="mb-16 text-center">
-          <div className="inline-block border border-white/20 rounded-full px-5 py-1.5 text-sm text-white/60 font-bold mb-6 shadow-sm bg-white/5 backdrop-blur-sm">
-            Technical Stack
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 uppercase">
-            My Skillset
-          </h2>
-          <p className="text-white/50 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-            A comprehensive overview of my programming languages, frameworks, databases, and engineering concepts.
-          </p>
-        </div>
-
-        {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {technicalSkills.categories.map((category, index) => (
-            <SkillCard key={category.title} category={category} index={index} />
-          ))}
-        </div>
-
+    <section id="skills" className="py-24 px-6 md:px-12 max-w-6xl mx-auto w-full relative z-10 font-sans">
+      
+      {/* Header */}
+      <div data-aos="fade-up" className="text-center mb-12">
+        <span className="inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest bg-purple-500/10 text-purple-400 border border-purple-500/20 mb-3">
+          02 // Expertise & Tools
+        </span>
+        <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+          Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">Skills Matrix</span>
+        </h2>
+        <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mt-3">
+          Languages, frameworks, databases, and AI tooling I use to craft production software.
+        </p>
       </div>
+
+      {/* Filter Category Tabs */}
+      <div data-aos="fade-up" className="flex flex-wrap justify-center gap-2 mb-12">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-300 ${
+              activeCategory === cat
+                ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-black shadow-[0_0_15px_rgba(0,242,254,0.4)] scale-105'
+                : 'glass-card text-slate-400 hover:text-white hover:border-slate-600'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Skills Display Grid */}
+      <div className="space-y-10">
+        {filteredCategories.map((category, idx) => (
+          <div data-aos="fade-up" key={category.title} className="glass-card rounded-3xl p-6 md:p-8 border-slate-800">
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2 border-b border-slate-800 pb-3">
+              <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+              {category.title}
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {category.skills.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="bg-slate-900/70 rounded-2xl p-4 border border-slate-800 hover:border-cyan-500/40 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-bold text-slate-200">{skill.name}</span>
+                    <span className="text-xs font-mono font-bold text-cyan-400">{skill.level}%</span>
+                  </div>
+                  {/* Glowing Progress Bar */}
+                  <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-full shadow-[0_0_10px_#00f2fe]"
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
     </section>
   );
 };

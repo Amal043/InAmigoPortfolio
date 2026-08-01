@@ -1,76 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { personalInfo } from '../data/portfolioData';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll to make navbar more solid
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Education', 'Certificates', 'Contact'];
-
-  const hireMeMailto = `mailto:${personalInfo.emails.primary}?subject=Hiring Inquiry – Portfolio&body=Hello ${personalInfo.firstName},%0D%0A%0D%0AI came across your portfolio and would like to discuss an opportunity with you.%0D%0A%0D%0ALooking forward to hearing from you.%0D%0ABest Regards,`;
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
   return (
-    <nav 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isOpen 
-          ? 'bg-[#ff2a2a] py-4'
-          : isScrolled 
-            ? 'bg-transparent py-4' 
-            : 'bg-transparent py-6'
+    <nav
+      className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] max-w-6xl z-40 transition-all duration-500 rounded-full ${
+        isScrolled
+          ? 'bg-slate-900/90 backdrop-blur-xl border border-sky-400/40 shadow-[0_0_25px_rgba(56,189,248,0.2)] py-3 px-6'
+          : 'bg-slate-800/70 backdrop-blur-md border border-slate-700/60 py-4 px-8'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-        
-        {/* Left Side: Logo/Name */}
-        <div className="flex items-center">
-          <a href="#" className="text-white text-2xl font-black tracking-tight whitespace-nowrap">
-            {personalInfo.brandName}<span className="text-red-500">.</span>
+      <div className="flex justify-between items-center">
+        {/* Brand Logo: Amal Srivastava */}
+        <div className="flex items-center gap-3">
+          <a href="#home" className="group flex items-center gap-2.5">
+            <span className="w-3.5 h-3.5 rounded-full bg-sky-400 animate-pulse shadow-[0_0_12px_#38bdf8]"></span>
+            <span className="text-xl md:text-2xl font-black tracking-tight text-white group-hover:text-sky-300 transition-colors">
+              Amal Srivastava
+            </span>
           </a>
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-bold bg-sky-500/15 text-sky-300 border border-sky-400/30">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            NIT Jamshedpur
+          </span>
         </div>
 
-        {/* Center: Desktop Menu Links */}
-        <div className="hidden lg:flex space-x-4 xl:space-x-6 text-xs xl:text-sm">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-1">
           {navLinks.map((link) => (
-            <a 
-              key={link} 
-              href={`#${link.toLowerCase()}`}
-              className="text-white/80 hover:text-white font-medium relative group transition-colors duration-300"
+            <a
+              key={link.name}
+              href={link.href}
+              className="px-4 py-1.5 text-sm font-semibold text-slate-200 hover:text-sky-300 hover:bg-sky-500/15 rounded-full transition-all duration-300"
             >
-              {link}
-              {/* Smooth hover underline */}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-red-500 transition-all duration-300 group-hover:w-full"></span>
+              {link.name}
             </a>
           ))}
         </div>
 
-        {/* Right Side: CTA Button */}
-        <div className="hidden lg:block">
-          <a 
+        {/* Contact CTA */}
+        <div className="hidden md:block">
+          <a
             href="#contact"
-            className="px-6 py-2.5 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] transition-all duration-300 backdrop-blur-md"
+            className="px-5 py-2 text-xs font-extrabold uppercase tracking-wider text-black bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-500 hover:from-sky-300 hover:to-blue-400 rounded-full shadow-[0_0_20px_rgba(56,189,248,0.4)] transition-all duration-300 hover:scale-105"
           >
             Hire Me
           </a>
         </div>
 
-        {/* Mobile Hamburger Menu Icon */}
-        <div className="lg:hidden flex items-center">
-          <button 
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button
             onClick={() => setIsOpen(!isOpen)}
-            className="text-white focus:outline-none p-2"
+            className="text-slate-200 hover:text-sky-400 focus:outline-none p-1"
+            aria-label="Toggle Menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
@@ -83,34 +83,28 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Slide-Down Menu */}
-      <div 
-        className={`lg:hidden absolute top-full left-0 w-full transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-[80vh] py-4 opacity-100 bg-[#ff2a2a] shadow-2xl overflow-y-auto' : 'max-h-0 opacity-0 bg-transparent'
-        }`}
-      >
-        <div className="flex flex-col px-6 space-y-1">
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden mt-3 pt-3 border-t border-slate-700 flex flex-col space-y-2 pb-2">
           {navLinks.map((link) => (
-            <a 
-              key={link} 
-              href={`#${link.toLowerCase()}`}
+            <a
+              key={link.name}
+              href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-black font-bold text-base border-b border-white/20 py-2.5 transition-colors"
+              className="px-4 py-2 text-sm font-semibold text-slate-200 hover:bg-sky-500/20 hover:text-sky-300 rounded-lg transition-colors"
             >
-              {link}
+              {link.name}
             </a>
           ))}
-          <div className="pt-4 pb-2">
-             <a 
-               href="#contact"
-               onClick={() => setIsOpen(false)} 
-               className="inline-block px-6 py-3 rounded-full bg-white text-[#ff2a2a] font-black hover:bg-black hover:text-white transition-colors w-full text-center shadow-lg"
-             >
-               Hire Me
-             </a>
-          </div>
+          <a
+            href="#contact"
+            onClick={() => setIsOpen(false)}
+            className="text-center px-4 py-2 text-xs font-bold uppercase tracking-wider text-black bg-sky-400 rounded-full shadow-lg mt-2"
+          >
+            Hire Me
+          </a>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

@@ -31,7 +31,7 @@ export const heroContent = {
   titleHighlight: "Full-Stack & AI Developer",
   subtitle:
     "Turning ideas into impactful solutions, I develop modern web applications, intelligent AI solutions, and data-driven systems that are scalable, efficient, and built to make a difference.",
-  ctaPrimary: { text: "View My Work", href: "#projects" },
+  ctaPrimary: { text: "About Me", href: "#about" },
   ctaSecondary: {
     text: "Contact Me",
     href: "#contact",
@@ -234,19 +234,67 @@ export const softSkillsList = [
 
 export const projects = [
   {
-    id: "quickstyle",
+    id: "aether-ai",
     number: "01",
-    badge: "🚀 Flagship AI Project",
+    badge: "⚡ Flagship Enterprise ML & Logistics Platform",
+    title: "AETHER AI — Commerce Intelligence Command Center",
+    description:
+      "An enterprise-grade AI decision platform engineered to process high-throughput e-commerce transactional data, profile supply chain metrics, assess data quality, and execute automated machine learning inference across 10 production ML models (Demand Spike, Churn Risk, Revenue Trajectory, Stock Depletion, Carrier Shipping Delay, Order Cancellation, Distribution Capacity, LTV, Return Probability). Features an automated Anomaly Detection Matrix, Multi-Horizon Forecasting (7 to 365 Days), RFM Customer Behavioral Clustering, and Executive AI Insights Synthesizer with FastAPI & Next.js 15 App Router.",
+    techTags: [
+      "Next.js 15",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "GSAP",
+      "Python 3.11",
+      "FastAPI",
+      "Scikit-Learn",
+      "Pandas",
+      "Pytest",
+      "Docker",
+    ],
+    links: {
+      github: "https://github.com/Amal043/AETHER_AI",
+      demo: "https://github.com/Amal043/AETHER_AI",
+    },
+    isFlagship: true,
+  },
+  {
+    id: "finagent",
+    number: "02",
+    badge: "🏆 1st Place Winner — IIT Kharagpur Challenge",
+    title: "FinAgent — AI Student Money Co-Pilot",
+    description:
+      "Winner of top honors at the IIT Kharagpur Platinum Jubilee Innovation Challenge. An AI-powered financial co-pilot built for students to automate budgeting, track multi-category expenses, and make data-driven financial decisions using Google Cloud Vertex AI and conversational agents.",
+    techTags: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Google Vertex AI",
+      "LangChain",
+      "Tailwind CSS",
+    ],
+    links: {
+      github: "https://github.com/Amal043",
+      demo: "https://github.com/Amal043",
+    },
+    isFlagship: true,
+  },
+  {
+    id: "quickstyle",
+    number: "03",
+    badge: "🤖 Multi-Agent AI Fashion Commerce",
     title: "Quick Style",
     description:
-      "A real-time, 30-minute quick-commerce fashion delivery platform utilizing a multi-agent AI system (LangGraph & Vertex AI Gemini) where Stylist and Anti-Return agents negotiate in real-time. Features voice-to-commerce flow, hyperlocal trend intelligence via web scraping (Tavily), and real-time package delivery tracking using the Google Maps and Directions API.",
+      "A real-time, 30-minute quick-commerce fashion delivery platform utilizing a multi-agent AI system (LangGraph & Vertex AI Gemini) where Stylist and Anti-Return agents negotiate in real-time. Features voice-to-commerce flow, hyperlocal trend intelligence via web scraping (Tavily), and real-time package delivery tracking using Google Maps API.",
     techTags: [
       "React",
       "TypeScript",
       "Vite",
       "Tailwind CSS",
       "Framer Motion",
-      "Three.js",
       "FastAPI",
       "LangGraph",
       "Google Vertex AI",
@@ -257,15 +305,15 @@ export const projects = [
       github: "https://github.com/Amal043",
       demo: "https://quick-style-ten.vercel.app",
     },
-    isFlagship: true,
+    isFlagship: false,
   },
   {
     id: "sonoria",
-    number: "02",
-    badge: "🎵 Premium Streaming",
+    number: "04",
+    badge: "🎵 Premium Streaming Platform",
     title: "Sonoria",
     description:
-      "A modern, premium web-based music streaming platform designed to give access to a massive library of songs and music videos. Features a seamless one-click switch between audio-only streaming (with a live wave visualizer) and high-quality video playback, user registration, liked tracks, and persistent playlists.",
+      "A modern, premium web-based music streaming platform providing access to a massive library of songs and music videos. Features a seamless one-click switch between audio-only streaming (with a live canvas-based wave visualizer) and high-quality video playback, user registration, liked tracks, and persistent playlists.",
     techTags: ["JavaScript", "HTML5", "CSS3", "Node.js", "MongoDB", "Express"],
     links: {
       github: "https://github.com/Amal043/Sonoria",
@@ -275,8 +323,8 @@ export const projects = [
   },
   {
     id: "eduportal",
-    number: "03",
-    badge: "🎓 Educational Portal",
+    number: "05",
+    badge: "🎓 Educational Opportunity Portal",
     title: "EduPortal",
     description:
       "A responsive Educational Opportunities Portal that helps users discover scholarships, hackathons, workshops, and internships through state-based opportunity recommendations. Built with secure session authentication and modern light/dark mode UI with glassmorphism effects.",
