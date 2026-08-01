@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { personalInfo } from '../data/portfolioData';
 
 const Preloader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Wait for the water fill animation (1.5s) + a small pause (0.5s)
-    // before the shutter goes up smoothly.
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2200);
+    }, 800);
     
     return () => clearTimeout(timer);
   }, []);
@@ -20,33 +17,23 @@ const Preloader = () => {
       {isLoading && (
         <motion.div
           key="preloader"
-          initial={{ y: 0 }}
-          exit={{ y: "-100%" }}
-          transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 w-full h-screen bg-[#ff2a2a] z-[100000] flex items-center justify-center"
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="fixed inset-0 w-full h-screen bg-[#0f172a] z-[100000] flex items-center justify-center font-sans"
         >
-          {/* Logo Container */}
           <motion.div 
-            exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="relative text-5xl md:text-7xl font-black tracking-tighter"
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 1.05, opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="flex items-center gap-3"
           >
-            {/* Background text (empty state) */}
-            <div className="text-red-900/30">
-              {personalInfo.brandName}<span className="text-red-900/30">.</span>
-            </div>
-
-            {/* Foreground text (water fill state) */}
-            <motion.div 
-              className="absolute top-0 left-0 text-white overflow-hidden whitespace-nowrap"
-              initial={{ clipPath: 'inset(100% 0 0 0)' }}
-              animate={{ clipPath: 'inset(0% 0 0 0)' }}
-              transition={{ duration: 1.6, ease: "easeInOut", delay: 0.2 }}
-            >
-              {personalInfo.brandName}<span className="text-black">.</span>
-            </motion.div>
+            <span className="w-4 h-4 rounded-full bg-sky-400 animate-ping"></span>
+            <span className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
+              Amal <span className="text-sky-400">Srivastava</span>
+            </span>
           </motion.div>
-
         </motion.div>
       )}
     </AnimatePresence>
