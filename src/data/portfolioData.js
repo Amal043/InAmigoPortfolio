@@ -204,21 +204,21 @@ export const internshipsList = [
   {
     organization: "FinAgent (IIT Kharagpur Challenge)",
     role: "Lead AI Engineer & Developer",
-    duration: "Oct 2025 (Competition Winner)",
+    duration: "2026 (Competition Winner)",
     skills: ["AI student money co-pilot", "Budgeting automation", "Commercially viable design", "Full-Stack Development"],
     tech: ["React", "Node.js", "MongoDB", "GCP Vertex AI"]
   },
   {
     organization: "Quick Style (Self-Directed)",
     role: "Full-Stack & AI Agent Developer",
-    duration: "May 2025 - June 2025",
+    duration: "2026 (Active Platform)",
     skills: ["Multi-agent negotiations", "Voice-to-commerce purchase", "Hyperlocal trend scraping", "Maps directions integration"],
     tech: ["React", "FastAPI", "LangGraph", "Vertex AI", "MongoDB", "Zustand"]
   },
   {
     organization: "Sonoria & EduPortal (Open Source)",
     role: "Frontend & Backend Developer",
-    duration: "Jan 2025 - April 2025",
+    duration: "2026 (Active Platforms)",
     skills: ["Audio-only/video switching", "Live wave visualizer", "MongoDB auth", "Opportunities recommendation system"],
     tech: ["HTML5", "CSS3", "JavaScript", "Node.js", "Express", "MongoDB"]
   }
